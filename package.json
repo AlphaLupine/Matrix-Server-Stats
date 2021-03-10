@@ -1,0 +1,26 @@
+{
+  "name": "matrixstats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "discord-akairo": "^8.1.0",
+    "dotenv": "^8.2.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlphaLupine/Matrix-Server-Stats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlphaLupine/Matrix-Server-Stats/issues"
+  },
+  "homepage": "https://github.com/AlphaLupine/Matrix-Server-Stats#readme"
+}
