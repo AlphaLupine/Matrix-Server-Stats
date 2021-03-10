@@ -11,6 +11,6 @@ export default class ClientReadyListener extends Listener {
     exec() {
         const prefix = this.client.commandHandler.prefix;
         this.client.logger.info("ClientReady",`${this.client.user!.username} is ready!`);
-        this.client.user?.setActivity(`${prefix}help`, { type: 'STREAMING',  url: 'https://www.trackyserver.com/server/matrix-rp-648119'})
+        this.client.user?.setActivity(`${prefix}info`, { type: 'STREAMING',  url: 'https://www.trackyserver.com/server/matrix-rp-648119'})
     }
 }
