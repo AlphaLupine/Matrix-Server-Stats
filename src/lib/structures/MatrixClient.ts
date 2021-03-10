@@ -6,6 +6,7 @@ import {
 } from "discord-akairo";
 import { join } from "path";
 import { Logger } from "@nedbot/logger";
+import MatrixEmbed from "../extensions/MatrixEmbed";
 
 export default class MatrixClient extends AkairoClient {
     public logger = new Logger({
@@ -16,6 +17,7 @@ export default class MatrixClient extends AkairoClient {
         enableInfoLogs: true,
         enableErrorLogs: true,
     });
+    public readonly embed = MatrixEmbed;
     public listenerHandler = new ListenerHandler(this, {
         directory: join(process.cwd(), "dist", "listeners")
     });
@@ -35,7 +37,7 @@ export default class MatrixClient extends AkairoClient {
     public constructor() {
         super(
             {
-                ownerID: process.env.OWNERIDS?.split(","),
+                ownerID: process.env.OWNER_IDS?.split(","),
             },
             {
                 disableMentions: "everyone",
