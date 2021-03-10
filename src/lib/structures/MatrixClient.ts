@@ -7,6 +7,7 @@ import {
 import { join } from "path";
 import { Logger } from "@nedbot/logger";
 import MatrixEmbed from "../extensions/MatrixEmbed";
+import StatMessageCache from "../caches/StatMessageCache";
 
 export default class MatrixClient extends AkairoClient {
     public logger = new Logger({
@@ -18,6 +19,7 @@ export default class MatrixClient extends AkairoClient {
         enableErrorLogs: true,
     });
     public readonly embed = MatrixEmbed;
+    public StatMessageCache = new StatMessageCache();
     public listenerHandler = new ListenerHandler(this, {
         directory: join(process.cwd(), "dist", "listeners")
     });

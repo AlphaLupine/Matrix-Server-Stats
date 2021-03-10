@@ -2,6 +2,7 @@ import { Logger } from '@nedbot/logger';
 
 import "discord-akairo";
 import MatrixEmbed from "../extensions/MatrixEmbed";
+import StatMessageCache from "../caches/StatMessageCache";
 
 declare module 'discord-akairo' {
     interface AkairoClient {
@@ -10,6 +11,7 @@ declare module 'discord-akairo' {
         inhibitorHandler: InhibitorHandler;
         logger: Logger;
         readonly embed: typeof MatrixEmbed;
+        StatMessageCache: StatMessageCache;
     }
 }
 declare module "discord.js" {
