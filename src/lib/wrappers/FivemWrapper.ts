@@ -29,13 +29,15 @@ export class Server {
         })
     }
 
-    public async getPlayers() {
-        await axios
-            .get(`http://${this.ip}/players.json`, { timeout: this.timeout})
-            .then((body) => {
-                let players = body.data;
-                return players.length;
-            });
+    public async getPlayerCount() {
+        return new Promise((send, err) => {
+            axios
+                .get(`http://${this.ip}/players.json`, { timeout: this.timeout })
+                .then(body => {
+                    let playerCount: number = body.data;
+                    send(playerCount);
+                })
+        })
     }
 
 }
