@@ -8,6 +8,7 @@ import { join } from "path";
 import { Logger } from "@nedbot/logger";
 import MatrixEmbed from "../extensions/MatrixEmbed";
 import StatMessageCache from "../caches/StatMessageCache";
+import StatCooldownCache from "../caches/StatCooldownCache";
 import { Server } from "../wrappers/FivemWrapper";
 
 export default class MatrixClient extends AkairoClient {
@@ -22,6 +23,7 @@ export default class MatrixClient extends AkairoClient {
     });
     public readonly embed = MatrixEmbed;
     public StatMessageCache = new StatMessageCache();
+    public StatCooldownCache = new StatCooldownCache();
     public listenerHandler = new ListenerHandler(this, {
         directory: join(process.cwd(), "dist", "listeners")
     });
@@ -45,6 +47,7 @@ export default class MatrixClient extends AkairoClient {
             },
             {
                 disableMentions: "everyone",
+                partials: ['USER', 'GUILD_MEMBER', 'CHANNEL', 'MESSAGE', 'REACTION']
             }
         );
     }

@@ -4,6 +4,7 @@ import { Server } from "../wrappers/FivemWrapper";
 import "discord-akairo";
 import MatrixEmbed from "../extensions/MatrixEmbed";
 import StatMessageCache from "../caches/StatMessageCache";
+import StatCooldownCache from "../caches/StatCooldownCache";
 
 declare module 'discord-akairo' {
     interface AkairoClient {
@@ -14,6 +15,7 @@ declare module 'discord-akairo' {
         server: Server;
         readonly embed: typeof MatrixEmbed;
         StatMessageCache: StatMessageCache;
+        StatCooldownCache: StatCooldownCache;
     }
 }
 declare module "discord.js" {
