@@ -26,18 +26,51 @@ export class Server {
                     }
                     if (err.response == undefined) send(status);
                 });
-        })
+        });
     }
 
     public async getPlayerCount() {
         return new Promise((send, err) => {
             axios
-                .get(`http://${this.ip}/players.json`, { timeout: this.timeout })
+                .get(`http://${this.ip}/dynamic.json`, { timeout: this.timeout })
                 .then(body => {
-                    let playerCount: number = body.data;
+                    let playerCount = body.data.clients;
                     send(playerCount);
-                })
-        })
+                });
+        });
+    }
+
+    public async getMaxPlayerCount() {
+        return new Promise((send, err) => {
+            axios
+                .get(`http://${this.ip}/info.json`, { timeout: this.timeout })
+                .then(body => {
+                    let maxClients = body.data.vars.sv_maxClients;
+                    send(maxClients);
+                });
+        });
+    }
+
+    public async getLicenseKey() {
+        return new Promise((send, err) => {
+            axios
+                .get(`http://${this.ip}/info.json`, { timeout: this.timeout })
+                .then(body => {
+                    let licenseKey = body.data.vars.sv_licenseKeyToken;
+                    send(licenseKey)
+                });
+        });
+    }
+
+    public async getDynamicInfo() {
+        return new Promise((send, err) => {
+            axios
+                .get(`http://${this.ip}/dynamic.json`, { timeout: this.timeout })
+                .then(body => {
+                    let info = body.data
+                    send(info)
+                });
+        });
     }
 
 }
