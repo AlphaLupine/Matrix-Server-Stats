@@ -8,8 +8,10 @@ import { join } from "path";
 import { Logger } from "@nedbot/logger";
 import MatrixEmbed from "../extensions/MatrixEmbed";
 import StatMessageCache from "../caches/StatMessageCache";
+import { Server } from "../wrappers/FivemWrapper";
 
 export default class MatrixClient extends AkairoClient {
+    public server = new Server(process.env.SERVERINFO!)
     public logger = new Logger({
         logFileDirectory: "./logs",
         infoLogFileName: "client.log",
@@ -62,4 +64,5 @@ export default class MatrixClient extends AkairoClient {
 
         return this.login(process.env.TOKEN);
     }
+
 }
