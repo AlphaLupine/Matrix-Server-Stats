@@ -1,4 +1,5 @@
 import { Logger } from '@nedbot/logger';
+import { Server } from "../wrappers/FivemWrapper";
 
 import "discord-akairo";
 import MatrixEmbed from "../extensions/MatrixEmbed";
@@ -10,6 +11,7 @@ declare module 'discord-akairo' {
         listenerHandler: ListenerHandler;
         inhibitorHandler: InhibitorHandler;
         logger: Logger;
+        server: Server;
         readonly embed: typeof MatrixEmbed;
         StatMessageCache: StatMessageCache;
     }
