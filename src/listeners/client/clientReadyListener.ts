@@ -18,6 +18,7 @@ export default class ClientReadyListener extends Listener {
         let playerCount = (await this.client.server.getPlayerCount() as number);
         let maxPlayerCount = (await this.client.server.getMaxPlayerCount() as number);
         let Status = (await this.client.server.getServerStatus() as object);
+        let Players = (await this.client.server.getPlayers() as object);
 
         //Embed Template - TODO: Move to Matrix Embed Extension
         let embed = new this.client.embed().setMain()
@@ -27,8 +28,10 @@ export default class ClientReadyListener extends Listener {
             .setDescription([
                 //@ts-ignore
                 `**Gamemode:** ${dynamicInfo.gametype}`,
-                `**Player Count:** ${playerCount}/${maxPlayerCount}`
+                `**Player Count:** ${playerCount}/${maxPlayerCount}`,
+                `**Players:**\n`
             ].join("\n\n"))
+            .setFooter(`Server is scheduled to restart every ${process.env.RESTART} hours`);
 
         //Run Setup:
         this.client.logger.info("Preparation",`Preparing Stats Channel`);
@@ -36,9 +39,10 @@ export default class ClientReadyListener extends Listener {
         await statChannel.bulkDelete(100);
         const statMessage = await statChannel.send(embed);
         this.client.StatMessageCache.set(statChannel.id, statMessage.id);
+        await statMessage.react(process.env.EMOJI_ID!);
 
         const prefix = this.client.commandHandler.prefix;
         this.client.logger.info("ClientReady",`${this.client.user!.username} is ready!`);
-        this.client.user?.setActivity(`${prefix}info`, { type: 'STREAMING',  url: 'https://www.trackyserver.com/server/matrix-rp-648119'})
+        this.client.user?.setActivity(`${prefix}vote`, { type: 'STREAMING',  url: 'https://www.trackyserver.com/server/matrix-rp-648119'})
     }
 }

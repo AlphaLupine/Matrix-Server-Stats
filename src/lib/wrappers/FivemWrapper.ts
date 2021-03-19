@@ -40,6 +40,17 @@ export class Server {
         });
     }
 
+    public async getPlayers() {
+        return new Promise((send, err) => {
+            axios
+                .get(`http://${this.ip}/players.json`, { timeout: this.timeout })
+                .then(body => {
+                    let players = body.data;
+                    send(players);
+                });
+        });
+    }
+
     public async getMaxPlayerCount() {
         return new Promise((send, err) => {
             axios
